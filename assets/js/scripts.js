@@ -18,6 +18,7 @@
      var childData = snapshot.val();
 
      var $table = $('#schedule');
+     var currentTime = moment().format('HH:mm');
 
      var htmlData = '<tr>';
 
@@ -27,6 +28,7 @@
      htmlData += '<td>'+childData.frequency+'</td>';
      htmlData += '<td></td>';
      htmlData += '<td></td>';
+     htmlData += '<td><span class="glyphicon glyphicon-remove removeSchedule"></span></td>';
      htmlData += '</tr>';
 
      $table.append(htmlData);
@@ -39,19 +41,32 @@
      var name = $('#name').val().trim();
      var destination = $('#destination').val().trim();
      var startTime = $('#startTime').val().trim();
-     var frequency = parseInt($('#frequency').val());
+     var frequency = $('#frequency').val();
 
      // validate form
      if(name && destination && startTime && frequency) {
 
-       var train = {
-         name: name,
-         destination: destination,
-         startTime: startTime,
-         frequency: frequency
-       };
+      //  console.log(moment(frequency, 'HH:mm'));
+       //
+      //  if(frequency.match(/^\d?\d:\d\d$/)) {
 
-       fb.push(train);
+         var train = {
+           name: name,
+           destination: destination,
+           startTime: startTime,
+           frequency: frequency
+         };
+
+         fb.push(train);
+
+      //  } else {
+       //
+      //    alert('Please use militar time, example format: 22:11');
+      //  }
+
+
+
+
 
      } else {
 
